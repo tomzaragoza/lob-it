@@ -20,11 +20,29 @@
         var mapOptions = {
           center: new google.maps.LatLng(0, 0),//-34.397, 150.644),
           zoom: 3,
-          mapTypeId: google.maps.MapTypeId.TERRAIN
+          mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
+
+        var s = {{ postcards|safe }};
+        var data = eval(s)['data'];
+
+        for (var i = 0; i < data.length; i++) {
+          var lat = Number(data[i]['from_latitude']);
+          var lng = Number(data[i]['from_longitude']);
+          
+          var myLatlng = new google.maps.LatLng(lat, lng);
+          // To add the marker to the map, use the 'map' property
+          var marker = new google.maps.Marker({
+              position: myLatlng,
+              map: map,
+              title:"Fuck yeah"
+          });
+        }
       }
+
+
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
   </head>
@@ -35,7 +53,7 @@
 	  </p>
     <p>{{ hi }}</p>
 
-    <p>{{ postcards }}</p>
+    
     <div id="map-canvas"/>
   </body>
 </html>

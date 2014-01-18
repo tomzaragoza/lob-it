@@ -1,5 +1,6 @@
 import lob
 import geopy
+import json
 from forms import ApiKey
 from flask import *
 from pymongo import MongoClient
@@ -24,19 +25,12 @@ def get_post_cards():
 	pass
 
 def get_lat_long(city, state, address):
-	# coords = {'lat': None, 'lng': None}
-	# pass
+
 	from geopy.geocoders import GeocoderDotUS
 	f_string = "%s {0} {1}".format(city, state)
-	print f_string
 	geolocator = GeocoderDotUS(format_string=f_string)
-	print 'this is the address', address
 	address, (latitude, longitude) = geolocator.geocode(address)
 	return (address, latitude, longitude)
-# 	>>> from geopy.geocoders import GeocoderDotUS
-# >>> geolocator = GeocoderDotUS(format_string="%s, Cleveland OH")
-# >>> address, (latitude, longitude) = geolocator.geocode("11111 Euclid Ave")
-# >>> print(address, latitude, longitude)
 
 @app.route('/api_key', methods=['POST'])
 def add_api_key():
@@ -69,7 +63,7 @@ def add_api_key():
 			except:
 				pass # the address that was used isn't real
 		
-		return render_template('map.html', hi='hi', postcards=pc)
+		return render_template('map.html', hi='hi', postcards=json.dumps({'data': pc}))
 
 @app.route('/map')
 def map():
