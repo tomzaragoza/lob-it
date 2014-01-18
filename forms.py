@@ -3,4 +3,4 @@ from wtforms import TextField, BooleanField
 from wtforms.validators import Required
 
 class ApiKey(Form):
-    name = TextField('ApiKey', validators = [Required()])
+    apikey = TextField('apikey', validators = [Required()])

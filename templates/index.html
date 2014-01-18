@@ -20,7 +20,7 @@
 
     <form method="POST" action="/api_key">
       {{ form.csrf_token }}
-      {{ form.name.label }} {{ form.name(size=20) }}
+      {{ form.apikey.label }} {{ form.apikey(size=100) }}
       <input type="submit" value="Go">
     </form>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

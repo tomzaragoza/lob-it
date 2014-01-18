@@ -1,7 +1,4 @@
-# import lob
-# from forms import *
-# from forms import ApiKey
-# import forms
+import lob
 from forms import ApiKey
 from flask import *
 from pymongo import MongoClient
@@ -11,28 +8,30 @@ app = Flask(__name__)
 app.debug = True
 app.config.from_object('config')
 
-
 mongo = MongoClient()
 db = mongo['lob']
 collection = db['postcards']
+lob.api = ''
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
-	# print "whatatlialkntlkna"
 	if request.method == 'GET':
-
-		# form = ApiKey(csrf_enabled=True)
-		# form = ApiKey()
 		form = ApiKey(request.form)
-		return render_template('index.html', form=form)#, form = form)#, form=form)#, form=form)#, form=form)
+		return render_template('index.html', form=form)
+
+def get_post_cards():
+	pass
 
 @app.route('/api_key', methods=['POST'])
 def add_api_key():
+	""" Once the button was pressed for API key getting passed in,
+		we verify, pull in data""" 
 	if request.method == 'POST':
+		form = request.form
+		lob.api_key = str(form['apikey'])
 
-		return render_template('map.html', hi='hi')
-		# return url_for('map', hi='hi')
-		# return redirect('/map', hi='hi')
+		postcards = lob.Postcard.list()
+		return render_template('map.html', hi='hi', postcards=postcards)
 
 @app.route('/map')
 def map():
