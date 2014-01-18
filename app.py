@@ -20,5 +20,7 @@ def add_api_key():
 @app.route('/map')
 def map():
 	return render_template('map.html')
+
 if __name__ == "__main__":
+	
     app.run()
