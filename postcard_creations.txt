@@ -1,0 +1,17 @@
+curl https://api.lob.com/v1/postcards \
+-u test_4a06255aa2fb75897597e5851267ea2a199: \
+-d "name=Demo Postcard job" \
+-d "to[name]=Tom Zaragoza" \
+-d "to[address_line1]=635 Woodward Avenue" \
+-d "to[address_city]=Detroit" \
+-d "to[address_state]=MI" \
+-d "to[address_zip]=48226" \
+-d "to[address_country]=US" \
+-d "from[name]=Tom Zaragoza" \
+-d "from[address_line1]=500 S State Street" \
+-d "from[address_city]=Ann Arbor" \
+-d "from[address_state]=MI" \
+-d "from[address_zip]=48109" \
+-d "from[address_country]=US" \
+-d "front=https://www.lob.com/postcardfront.pdf" \
+-d "back=https://www.lob.com/postcardback.pdf"

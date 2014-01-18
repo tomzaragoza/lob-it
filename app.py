@@ -29,9 +29,19 @@ def add_api_key():
 	if request.method == 'POST':
 		form = request.form
 		lob.api_key = str(form['apikey'])
-
+		pc = []
 		postcards = lob.Postcard.list()
-		return render_template('map.html', hi='hi', postcards=postcards)
+		print dir(postcards[0])
+		for p in postcards:
+			to_address = '{0}, {1}, {2}, {3}'.format(p.to.address_line1, p.to.address_city, p.to.address_state, p.to.address_country)
+			from_address = '{0}, {1}, {2}, {3}'.format(p.from_address.address_line1, p.from_address.address_city, p.from_address.address_state, p.from_address.address_country)
+			pc.append({
+						'name': p.name, 
+						'to': to_address,
+						'from': from_address
+					}) 
+		
+		return render_template('map.html', hi='hi', postcards=pc)
 
 @app.route('/map')
 def map():
