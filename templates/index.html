@@ -18,7 +18,7 @@
     <p><a href='/api_key'>api key</a></p>
     <p><a href='/map'>map</a></p>
 
-    <form method="POST" action="/api_key">
+    <form method="POST" action="/map">
       {{ form.csrf_token }}
       {{ form.apikey.label }} {{ form.apikey(size=60) }}
       <input type="submit" value="Go">
