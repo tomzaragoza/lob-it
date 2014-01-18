@@ -33,12 +33,37 @@
           var lng = Number(data[i]['from_longitude']);
           
           var myLatlng = new google.maps.LatLng(lat, lng);
-          // To add the marker to the map, use the 'map' property
+          
+          var contentString = '<div id="content">'+
+              '<div id="siteNotice">'+
+              '</div>'+
+              '<h1 id="firstHeading" class="firstHeading">' + data[i]['name'] + '</h1>'+
+              '<div id="bodyContent">'+
+              '<p>' + data[i]['from'] + '</p>'
+              '</div>'+
+              '</div>';
+
+          var infowindow = new google.maps.InfoWindow({
+              content: contentString
+          });
+
           var marker = new google.maps.Marker({
               position: myLatlng,
               map: map,
-              title:"Fuck yeah"
+              title: 'PostCard!'
           });
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map,marker);
+          });
+
+
+          // var infoWindowOpts = new google.maps.infoWindowOptions({'content': data[i]['from']});
+          // To add the marker to the map, use the 'map' property
+          // var marker = new google.maps.Marker({
+          //     position: myLatlng,
+          //     map: map,
+          //     title:"Fuck yeah"
+          // });
         }
       }
 

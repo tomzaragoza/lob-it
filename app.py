@@ -14,7 +14,6 @@ mongo = MongoClient()
 db = mongo['lob']
 postcards_collection = db['postcards']
 settings_collection = db['settings']
-# lob_obj.api_key = ''
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
