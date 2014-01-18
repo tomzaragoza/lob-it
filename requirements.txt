@@ -2,3 +2,4 @@ Flask-WTF==0.8.4
 flask
 pymongo
 lob-python
+geopy
