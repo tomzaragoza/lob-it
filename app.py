@@ -10,11 +10,15 @@ db = mongo['lob']
 collection = db['postcards']
 
 @app.route('/')
-def hello():
+def home():
 	return render_template('index.html')
 
+@app.route('/api_key')
+def add_api_key():
+	return render_template('api_key.html')
 
-
-
+@app.route('/map')
+def map():
+	return render_template('map.html')
 if __name__ == "__main__":
     app.run()
